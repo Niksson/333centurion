@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.beer-gradient-text {
+  background: linear-gradient(30deg, #c0431d 10%, #ff9800 60%, #ffc107 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.beer-gradient-background {
+  background: linear-gradient(45deg, #c0431d 20%, #ff9800 60%, #ffc107 100%);
+}
+
+.beer-gradient-border {
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(30deg, #c0431d 20%, #ff9800 60%, #ffc107 100%);
+  border-image-slice: 1;
+  border-image-source: linear-gradient(30deg, #c0431d 20%, #ff9800 60%, #ffc107 100%);
+  padding: 5px;
+}
