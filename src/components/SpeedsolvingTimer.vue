@@ -114,6 +114,28 @@ function updatePenalty(penalty: Penalty | null) {
   updateRoundAttempt(currentRound.value, attempt.value)
 }
 
+function handleTouchEvent(e: TouchEvent) {
+  if (timerPhase.value === 'running') {
+    stopTimer(true)
+    return
+  }
+
+  if (e.type === 'touchstart') {
+    prepareTimer()
+    return
+  }
+
+  if (e.type === 'touchend') {
+    if (timerPhase.value === 'waiting') {
+      clearTimeout(timerWaitingTimeout.value)
+      timerPhase.value = 'idle'
+      return
+    }
+    if (timerPhase.value === 'ready') startTimer()
+    return
+  }
+}
+
 function handleKeyEvent(e: KeyboardEvent) {
   if (timerPhase.value === 'stopped') {
     if (e.key === 'Enter') emit('attemptConfirmed')
@@ -145,10 +167,14 @@ function handleKeyEvent(e: KeyboardEvent) {
 onMounted(() => {
   window.addEventListener('keydown', handleKeyEvent)
   window.addEventListener('keyup', handleKeyEvent)
+  window.addEventListener('touchstart', handleTouchEvent)
+  window.addEventListener('touchend', handleTouchEvent)
 })
 onUnmounted(() => {
   window.removeEventListener('keydown', handleKeyEvent)
   window.removeEventListener('keyup', handleKeyEvent)
+  window.removeEventListener('touchstart', handleTouchEvent)
+  window.removeEventListener('touchend', handleTouchEvent)
 })
 
 defineExpose({ stopTimer, timerPhase: timerPhase })
