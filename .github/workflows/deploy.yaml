@@ -1,6 +1,11 @@
 name: Deploy to Cloudflare Pages
 
 on:
+  push:
+    branches:
+      - main # Trigger the workflow on push to the main branch
+    paths:
+      - '!/.github/**' # Exclude changes in the .github directory
   workflow_dispatch: # Allow manual triggering of the workflow
 
 jobs:
@@ -28,4 +33,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: 333centurion
-          directory: dist # The directory of your built app
+          directory: dist
