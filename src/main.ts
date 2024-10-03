@@ -6,14 +6,14 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import { library as iconLibrary } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faGitlab } from '@fortawesome/free-brands-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faAward, faStopwatch, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 
 const app = createApp(App)
 
 const pinia = createPinia()
 
-iconLibrary.add(faGitlab, faAward, faThumbsDown, faStopwatch)
+iconLibrary.add(faGithub, faAward, faThumbsDown, faStopwatch)
 
 app.component('font-awesome-icon', FontAwesomeIcon)
 

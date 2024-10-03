@@ -40,8 +40,8 @@ const onReturnToMain = () => {
     <footer class="footer bg-base-300 p-4">
       <p class="inline">Made with ❤️ by <b>Nikolai Masson</b></p>
       <span class="text-center place-self-end">
-        <a class="text-center" href="https://gitlab.com/Niksson/centuriontimer">
-          <FontAwesomeIcon icon="fa-brands fa-gitlab" /> Gitlab
+        <a class="text-center" href="https://github.com/Niksson/333centurion">
+          <FontAwesomeIcon icon="fa-brands fa-github" /> Github
         </a>
       </span>
     </footer>
