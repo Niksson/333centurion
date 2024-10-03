@@ -115,6 +115,10 @@ function updatePenalty(penalty: Penalty | null) {
 }
 
 function handleTouchEvent(e: TouchEvent) {
+  if (timerPhase.value === 'stopped') {
+    return
+  }
+
   if (timerPhase.value === 'running') {
     stopTimer(true)
     return
