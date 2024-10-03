@@ -6,7 +6,6 @@ on:
       - main # Trigger the workflow on push to the main branch
     paths:
       - '!/.github/**' # Exclude changes in the .github directory
-  workflow_dispatch: # Allow manual triggering of the workflow
 
 jobs:
   build:
