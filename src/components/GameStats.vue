@@ -77,9 +77,12 @@ import { formatStat } from '@/lib/stringHelpers'
 import { useGameStore } from '@/stores/game'
 import { computed, ref } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import type { DisplayedStatsType } from '@/models/DisplayedStatsType'
 
-type DisplayedStatsType = 'best' | 'current'
-const displayedStats = ref<DisplayedStatsType>('current')
+const { initialToggle } = defineProps<{
+  initialToggle: DisplayedStatsType
+}>()
+const displayedStats = ref<DisplayedStatsType>(initialToggle)
 
 const gameStore = useGameStore()
 

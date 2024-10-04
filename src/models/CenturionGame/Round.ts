@@ -7,7 +7,7 @@ export type Round = {
   roundId: number
   attempt: Attempt | null
   scramble: string
-  isDrinkingRound: boolean
+  isHardModeRound: boolean
   shotDrunk: boolean
   remainingTimeMilliseconds: number
   phase: RoundPhase
@@ -15,13 +15,13 @@ export type Round = {
 
 export const createRound = (
   id: number,
-  isDrinkingRound: boolean,
+  isHardModeRound: boolean,
   scramble: string,
   roundDurationSeconds: number
 ): Round => {
   const round: Round = {
     roundId: id,
-    isDrinkingRound: isDrinkingRound,
+    isHardModeRound: isHardModeRound,
     attempt: null,
     scramble: scramble,
     shotDrunk: false,
@@ -32,10 +32,10 @@ export const createRound = (
   return round
 }
 
-export const isNextRoundDrinkingRound = (roundsCount: number, gameMode: GameMode) => {
-  if (gameMode === 'beer') return true
+export const isNextRoundHardMode = (roundsCount: number, gameMode: GameMode) => {
+  if (gameMode === 'normal') return false
 
-  if (gameMode === 'liquor') return roundsCount % 10 === 0
+  if (gameMode === 'hard') return roundsCount % 10 === 0
   else return false
 }
 export const markRoundDrunk = (round: Round) => {

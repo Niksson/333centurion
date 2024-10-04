@@ -61,18 +61,18 @@
             class="join-item flex-1 btn"
             type="radio"
             name="mode"
-            id="beer-mode"
-            value="beer"
-            aria-label="🍺 Beer - drink each attempt"
+            id="normal-mode"
+            value="normal"
+            aria-label="🍺 Normal - drink Beer each attempt"
             v-model="gameOptions.gameMode"
           />
           <input
             class="join-item flex-1 btn"
             type="radio"
             name="mode"
-            id="liquor-mode"
-            value="liquor"
-            aria-label="🍸 Liquor - drink every 10 attempts"
+            id="hard-mode"
+            value="hard"
+            aria-label="🍸 Hard - drink Beer each attempt. Replace every 10th attempt with hard liquor"
             v-model="gameOptions.gameMode"
           />
         </div>

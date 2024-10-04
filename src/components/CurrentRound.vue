@@ -7,11 +7,10 @@
   <div v-if="phase === 'solving' || phase === 'penalties'">
     <SpeedsolvingTimer ref="timer" @attempt-confirmed="handleAttemptConfimed" />
   </div>
-  <div
-    v-if="phase === 'drinking' && currentRound.isDrinkingRound"
-    class="flex flex-col items-center"
-  >
-    <div class="text-5xl mb-7">Now, DRINK!</div>
+  <div v-if="phase === 'drinking'" class="flex flex-col items-center">
+    <div v-if="currentRound.isHardModeRound" class="text-5xl mb-7">Hard Mode Round 🍸</div>
+    <div v-else class="text-5xl mb-7">Now, drink some 🍺</div>
+    <div class="mb-1">This is a placeholder for some dfinking-related GIF</div>
     <div class="skeleton w-96 h-56 mb-7" />
     <button
       class="text-xl btn btn-success inline-block mb-7"
@@ -29,6 +28,7 @@
           :key="missedRound.roundId"
         >
           {{ missedRound.shotDrunk ? '✅' : missedRound.roundId }}
+          {{ missedRound.isHardModeRound ? '🍸' : '' }}
         </button>
       </div>
     </div>
@@ -64,8 +64,7 @@ function switchToFinished() {
 }
 
 function handleAttemptConfimed() {
-  if (!currentRound.value.isDrinkingRound) switchToFinished()
-  else switchToDrinking()
+  switchToDrinking()
 }
 
 function handleDrinking(e: Event, roundId: number | null) {
@@ -73,6 +72,8 @@ function handleDrinking(e: Event, roundId: number | null) {
   const target = e.target as HTMLButtonElement
   target.disabled = true
   emit('bottomsUp', roundId)
+  if (currentRound.value.shotDrunk && missedRounds.value.every((r) => r.shotDrunk))
+    switchToFinished()
 }
 
 const timer = ref<InstanceType<typeof SpeedsolvingTimer> | null>(null)

@@ -13,7 +13,6 @@ const rounds = computed(() => {
 })
 
 function getStatusIcon(round: Round): string {
-  if (!round.isDrinkingRound) return '⏳'
   if (round.shotDrunk) return '✅'
   return '❌'
 }

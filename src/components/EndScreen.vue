@@ -14,7 +14,7 @@
     </div>
     <div class="flex justify-center items-start gap-7">
       <div class="basis-1/2">
-        <GameStats />
+        <GameStats initial-toggle="best" />
       </div>
       <div class="divider divider-horizontal"></div>
       <div class="basis-1/2 flex flex-col items-start">

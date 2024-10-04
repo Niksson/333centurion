@@ -39,7 +39,7 @@ export function millisecondsToString(milliseconds: number): string {
   const stringUpToSeconds = secondsToString(Math.floor(milliseconds / 1000))
   const result = [stringUpToSeconds]
 
-  const resultMilliseconds = milliseconds % 1000
+  const resultMilliseconds = Math.round(milliseconds % 1000)
   const millisecondsString = resultMilliseconds.toString().padStart(3, '0').slice(0, -1)
 
   result.push(`.${millisecondsString}`)

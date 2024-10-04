@@ -2,6 +2,7 @@ import { expect, test } from 'vitest'
 import { millisecondsToString } from '@/lib/stringHelpers'
 
 test.each([
+  [693.3333333333334, '00.69'],
   [0, '00.00'],
   [1, '00.00'],
   [10, '00.01'],

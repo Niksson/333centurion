@@ -43,8 +43,8 @@ const recalculateAverageOfN = (rounds: Round[], n: number): MultipleAttemptResul
 }
 
 export type GameStats = {
-  best: SingleAttemptResult
-  worst: SingleAttemptResult
+  best: SingleAttemptResult | null
+  worst: SingleAttemptResult | null
   currentAverages: Averages
   bestAverages: Averages
   mean: SingleAttemptResult
@@ -59,8 +59,8 @@ export type Averages = {
 
 export const createGameStats = (): GameStats => {
   return {
-    best: 'DNS',
-    worst: 'DNS',
+    best: null,
+    worst: null,
     mean: 'DNF',
     currentAverages: {
       ao5: 'DNF',
@@ -88,6 +88,7 @@ export const recalculateStats = (stats: GameStats, rounds: Round[]): GameStats =
 
 const getNewBest = (stats: GameStats, newRound: Round): SingleAttemptResult => {
   const newResult = getAttemptResult(newRound.attempt!)
+  if (stats.best === null) return newResult
   if (isSuccessfulResult(stats.best) && !isSuccessfulResult(newResult)) return stats.best
   else if (!isSuccessfulResult(stats.best) && isSuccessfulResult(newResult)) return newResult
   else if (stats.best > newResult) return newResult
@@ -97,6 +98,7 @@ const getNewBest = (stats: GameStats, newRound: Round): SingleAttemptResult => {
 
 const getNewWorst = (stats: GameStats, newRound: Round): SingleAttemptResult => {
   const newResult = getAttemptResult(newRound.attempt!)
+  if (stats.worst === null) return newResult
   if (isSuccessfulResult(stats.worst) && !isSuccessfulResult(newResult)) return newResult
   else if (!isSuccessfulResult(stats.worst) && isSuccessfulResult(newResult)) return stats.worst
   else if (stats.worst < newResult) return newResult

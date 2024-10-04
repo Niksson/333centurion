@@ -3,7 +3,7 @@ import { createDefaultGame, createGame, type Game } from '@/models/CenturionGame
 import {
   type Round,
   createRound,
-  isNextRoundDrinkingRound,
+  isNextRoundHardMode,
   markRoundDrunk
 } from '@/models/CenturionGame/Round'
 import type { GameMode } from '@/models/CenturionGame/GameMode'
@@ -12,13 +12,13 @@ import type { GameOptions } from '@/models/CenturionGame/GameOptions'
 import { recalculateStats } from '@/models/CenturionGame/GameStats'
 
 async function createNewRound(
-  roundCount: number,
+  roundId: number,
   gameMode: GameMode,
   attemptTimeSeconds: number
 ): Promise<Round> {
-  const drinkingRound = isNextRoundDrinkingRound(roundCount, gameMode)
+  const hardModeRound = isNextRoundHardMode(roundId + 1, gameMode)
   const scramble = await randomScrambleForEvent('333')
-  const round = createRound(roundCount + 1, drinkingRound, scramble.toString(), attemptTimeSeconds)
+  const round = createRound(roundId + 1, hardModeRound, scramble.toString(), attemptTimeSeconds)
   return round
 }
 

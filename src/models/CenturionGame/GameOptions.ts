@@ -12,6 +12,6 @@ export const createDefaultOptions = (): GameOptions => {
     totalAttempts: 100,
     attemptTimeSeconds: 60,
     alcoholVolumeMilliliters: 25,
-    gameMode: 'beer'
+    gameMode: 'normal'
   }
 }

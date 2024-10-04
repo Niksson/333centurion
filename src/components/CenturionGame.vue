@@ -43,7 +43,7 @@ const emit = defineEmits(['gameOver'])
   <div class="pt-10 px-20">
     <div class="flex items-start gap-7">
       <aside class="basis-[22%] p-3">
-        <GameStats />
+        <GameStats initial-toggle="current" />
       </aside>
       <section class="basis-[56%] bg-base-300 rounded-md p-3">
         <CurrentRound v-if="!changingRounds" @round-over="endRound" @bottoms-up="onBottomsUp" />

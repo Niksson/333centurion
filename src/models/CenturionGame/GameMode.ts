@@ -1,1 +1,1 @@
-export type GameMode = 'beer' | 'liquor'
+export type GameMode = 'normal' | 'hard'
