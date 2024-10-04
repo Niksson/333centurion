@@ -1,11 +1,8 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches:
-      - main # Trigger the workflow on push to the main branch
-    paths:
-      - '!/.github/**' # Exclude changes in the .github directory
+  workflow_dispatch:
+    
 
 jobs:
   build:
