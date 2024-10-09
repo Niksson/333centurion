@@ -4,8 +4,12 @@ import CurrentRound from './CurrentRound.vue'
 import RoundList from './RoundList.vue'
 import GameStats from './GameStats.vue'
 import { ref } from 'vue'
+import nextRoundAlert from '@/assets/next-round-alert.mp3'
+
 const gameStore = useGameStore()
 const changingRounds = ref(false)
+
+const alert = new Audio(nextRoundAlert)
 
 async function endRound() {
   gameStore.endRound()
@@ -20,6 +24,8 @@ async function endRound() {
 
 async function nextRound() {
   changingRounds.value = true
+  alert.play()
+  if (navigator.vibrate !== undefined) navigator.vibrate(100)
   await gameStore.setNextRound()
   changingRounds.value = false
 }
