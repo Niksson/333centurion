@@ -27,7 +27,7 @@ const onReturnToMain = () => {
 </script>
 
 <template>
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col h-screen unselectable">
     <main class="flex-grow flex justify-center items-center" v-if="phase === 'main-menu'">
       <StartScreen @game-created="onGameCreated" />
     </main>

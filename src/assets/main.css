@@ -21,3 +21,10 @@
   border-image-source: linear-gradient(30deg, #c0431d 20%, #ff9800 60%, #ffc107 100%);
   padding: 5px;
 }
+
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
