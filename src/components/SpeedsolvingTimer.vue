@@ -64,6 +64,9 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { attemptToString, createAttempt, getAttemptResult } from '@/models/CenturionGame/Attempt'
 import { useGameStore } from '@/stores/game'
 import { updateRoundAttempt } from '@/models/CenturionGame/Round'
+import { differenceWithNow, now } from '@/lib/dateTimeHelpers'
+
+const timerStartTime = ref<Date>()
 
 let timerWaitingTimeout = ref<NodeJS.Timeout>()
 let timerInterval = ref<NodeJS.Timeout>()
@@ -96,8 +99,12 @@ function prepareTimer() {
 function startTimer() {
   // The moment we start the timer, it cannot be DNS anymore
   attempt.value.penalty = null
-  // Unfortunately, JS doesn't allow for timers running faster than 10ms
-  timerInterval.value = setInterval(() => (attempt.value.timeMilliseconds += 10), 10)
+  timerStartTime.value = now()
+  // We need to use datetime shenanigans because Safari actually cannot handle intervals faster than 100ms
+  timerInterval.value = setInterval(
+    () => (attempt.value.timeMilliseconds = differenceWithNow(timerStartTime.value!)),
+    10
+  )
   timerPhase.value = 'running'
 }
 
